@@ -70,6 +70,10 @@ disp.plot(cmap=plt.cm.Blues, ax=ax, colorbar=True)
 ax.set_title("Confusion Matrix", fontsize=14, pad=10)
 
 plt.tight_layout()
+
+# Save image to outputs folder
+plt.savefig("outputs/confusion_matrix.png")
+
 plt.show()
 
 import matplotlib.pyplot as plt
@@ -106,7 +110,15 @@ disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=iris.target_na
 fig, ax = plt.subplots(figsize=(6, 5))
 disp.plot(cmap='viridis', ax=ax, colorbar=True)
 
+# Plotting with the default 'viridis' colormap
+fig, ax = plt.subplots(figsize=(6, 5))
+disp.plot(cmap='viridis', ax=ax, colorbar=True)
+
 plt.tight_layout()
+
+# Save the figure
+plt.savefig("outputs/confusion_matrix_viridis.png", dpi=300)
+
 plt.show()
 
 from sklearn.datasets import load_iris
@@ -128,3 +140,9 @@ model_knn.fit(X_train, y_train)
 y_pred_knn = model_knn.predict(X_test)
 
 print("k-NN accuracy:", accuracy_score(y_test, y_pred_knn))
+
+import joblib
+
+# Save the model directly into the existing 'outputs' folder
+joblib.dump(model, 'outputs/my_trained_model.joblib')
+
